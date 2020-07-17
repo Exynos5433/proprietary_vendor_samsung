@@ -1,25 +1,60 @@
-# SS_TabS2_L_WiFi Released on 20150616
-###################################################################################################
-# General parameters
+#SEMCO B85B BCM4358 WLCSP module, 2 Antenna - 2014.12.10 _low rate 1dB up
+#adding two range TSSI parameters
+NVRAMRev=$Rev: 500210 $
 sromrev=11
-boardrev=0x1110
-boardtype=0x0752
-macaddr=00:90:4c:19:90:01
-ccode=ALL
+boardrev=0x1100
+## boardtype is subject to change
+boardtype=0x0775
+boardflags=0x12001001
+#enable eLNA both 2G/5G
+boardflags2=0x00002000
+boardflags3=0x48000109
+#boardnum=57410
+macaddr=00:90:4c:16:70:01
+ccode=US
 regrev=6
+antswitch=0
+pdgain5g=4
+pdgain2g=4
+tworangetssi2g=1
+tworangetssi5g=1
+lowpowerrange2g=0
+lowpowerrange5g=0
+olpc_thresh=1
+femctrl=10
 vendid=0x14e4
 devid=0x43e9
 manfid=0x2d0
 #prodid=0x052e
-xtalfreq=37400
+nocrc=1
 otpimagesize=484
-#pciehdr=bcm94358wlspie_01
-boardflags=0x12001201
-boardflags2=0x00002000
-# RF Configuration
-antswitch=0
-#paprdis=0
-femctrl=10
+xtalfreq=37400
+
+rxgains2gelnagaina0=3
+rxgains2gtrisoa0=8
+rxgains2gtrelnabypa0=1
+rxgains5gelnagaina0=3
+rxgains5gtrisoa0=7
+rxgains5gtrelnabypa0=1
+rxgains5gmelnagaina0=3
+rxgains5gmtrisoa0=7
+rxgains5gmtrelnabypa0=1
+rxgains5ghelnagaina0=3
+rxgains5ghtrisoa0=6
+rxgains5ghtrelnabypa0=1
+rxgains2gelnagaina1=3
+rxgains2gtrisoa1=8
+rxgains2gtrelnabypa1=1
+rxgains5gelnagaina1=3
+rxgains5gtrisoa1=7
+rxgains5gtrelnabypa1=1
+rxgains5gmelnagaina1=3
+rxgains5gmtrisoa1=7
+rxgains5gmtrelnabypa1=1
+rxgains5ghelnagaina1=3
+rxgains5ghtrisoa1=6
+rxgains5ghtrelnabypa1=1
+
 rxchain=3
 txchain=3
 aa2g=3
@@ -28,201 +63,113 @@ agbg0=0
 agbg1=0
 aga0=0
 aga1=0
-AvVmid_c0=2,140,2,145,2,145,2,145,2,145
-AvVmid_c1=2,140,2,145,2,145,2,145,2,145
-#AvVmid_c2=0,0,0,0,0,0,0,0,0,0
-tssisleep_en=0x1f
-
-ltecxmux=0x77540
-
-phy4350_ss_opt=1
-#ofdmfilttype=1
-
-dot11agduphrpo=0x0
-dot11agduplrpo=0x0
-
-# Temperature settings
-tempthresh=120
-temps_hysteresis=10
-tempoffset=255
-rawtempsense=0x1ff
-phycal_tempdelta=25
-temps_period=15
-
-nocrc=1
-
-#TSSI 1range setup
-#olpc_thresh=28                #Set min power to 7dbm
-#boardflags3=0x4800018a         #Enable cck war
-#tworangetssi2g=0
-#tworangetssi5g=0
-
-#TSSI 2range setup
-#Disable cck war
-boardflags3=0x4800010a   
-tworangetssi2g=1
-tworangetssi5g=1
-olpc_thresh=1            #Set min power to 0.25dbm
-lowpowerrange2g=0      #For low power range TSSI test.
-lowpowerrange5g=0       #For low power range TSSI test.
-
-
-###################################################################################################
-# 2G RF Settings
-###################################################################################################
-pdgain2g=4
-
-rxgains2gtrelnabypa0=1
-rxgains2gtrelnabypa1=1
-
-#2G elna gain from datasheet is 14dB
-#2G elna gain changed to 12dB
-rxgains2gelnagaina0=3
-rxgains2gelnagaina1=3
-
-#triso values for 2G are picked from older nvram. Might need to change.
-rxgains2gtrisoa0=6
-rxgains2gtrisoa1=6
-
-## SWCTRLMAP using RFMD8850B (iPA/eLNA)
-swctrlmap_2g=0x00001020,0x20400000,0x00000000,0x020202,0x0ff
-swctrlmap_5g=0x00000208,0x05900000,0x04100000,0x000000,0x0fd
-#swctrlmapext_5g=0x00000000,0x00000000,0x00000000,0x000000,0x000
-swctrlmapext_2g=0x0,0x0,0x0,0x0,0x03
-
 tssipos2g=1
 extpagain2g=2
-rssicorrnorm_c0=1,1
-rssicorrnorm_c1=1,1
-cckdigfilttype=2
-
-# Max Power is 18.5 dBm-1.5(backoff) = 17dBm
-maxp2ga0=74
-maxp2ga1=82
-
-# Pa Params for 2 range
-#high range
-pa2ga0=0xff94,0x1696,0xfd84
-pa2ga1=0xff91,0x17a8,0xfd63
-
-#low range
-pa2ga2=0xff86,0x0ed7,0xfdda
-pa2ga3=0xff6f,0x0f53,0xfdd7
-
-pdoffsetcckma0=0x0
-pdoffsetcckma1=0x0
-
-# Power offsets
-cckbw202gpo=0x0000
-cckbw20ul2gpo=0x0000
-mcsbw202gpo=0xaa844440
-mcsbw402gpo=0xccaaaa86
-dot11agofdmhrbw202gpo=0x8864
-ofdmlrbw202gpo=0x4400
-sb20in40hrpo=0x0
-sb20in40lrpo=0x0
-###################################################################################################
-# 5G RF Settings
-###################################################################################################
-pdgain5g=4
-
-# ch12 power limit value
-fccpwrch12=1
-# ch13 power limit value
-fccpwrch13=1 
-# Enable/disable for wifi only model
-fccpwroverride=1
-
-
-#5G elna gain from datasheet is 12dB
-rxgains5gtrelnabypa0=1
-rxgains5gtrelnabypa1=1
-rxgains5gelnagaina0=3
-rxgains5gelnagaina1=3
-rxgains5gtrisoa0=5
-rxgains5gtrisoa1=5
-
-rxgains5gmtrelnabypa0=1
-rxgains5gmtrelnabypa1=1
-rxgains5gmelnagaina0=3
-rxgains5gmelnagaina1=3
-rxgains5gmtrisoa0=6
-rxgains5gmtrisoa1=6
-
-rxgains5ghtrelnabypa0=1
-rxgains5ghtrelnabypa1=1
-rxgains5ghelnagaina0=3
-rxgains5ghelnagaina1=3
-rxgains5ghtrisoa0=6
-rxgains5ghtrisoa1=6
-
 tssipos5g=1
 extpagain5g=2
+tempthresh=120
+temps_hysteresis=15
+tempoffset=255
+rawtempsense=0x1ff
+
+pa2ga0=0xff6b,0x1645,0xfd64
+pa2ga1=0xff60,0x163f,0xfd62
+pa5ga0=0xff44,0x1742,0xfd31,0xff47,0x173c,0xfd33,0xff42,0x1693,0xfd3e,0xff54,0x1721,0xfd3e
+pa5ga1=0xff40,0x17ab,0xfd24,0xff44,0x17b2,0xfd26,0xff47,0x1731,0xfd32,0xff47,0x1721,0xfd35
+###low range
+pa2ga2=0xff60,0x0e07,0xfdf8
+pa2ga3=0xff4d,0x0ddd,0xfe02
+pa5ga2=0xff86,0x1003,0xfdd6,0xff99,0x105c,0xfdd3,0xffa7,0x1017,0xfdd5,0xffee,0x109a,0xfde0
+pa5ga3=0xff4d,0x0f5f,0xfde2,0xff55,0x0f82,0xfdda,0xff6e,0x0f9e,0xfdca,0xff6c,0x0fb0,0xfdcb
+
+maxp2ga0=80
+maxp5ga0=80,80,80,80
+maxp2ga1=80
+maxp5ga1=80,80,80,80
 subband5gver=0x4
-
-rssicorrnorm5g_c0=0,0,2,0,1,1,-1,0,1,-1,0,1
-rssicorrnorm5g_c1=0,0,2,0,0,1,-1,-1,1,-1,-1,1
-
-# Max Power is 18.5 dBm for all 5G bands
-maxp5ga0=74,74,74,74
-maxp5ga1=74,74,74,74
-
-#high power range
-pa5ga0=0xff57,0x1818,0xfd27,0xff58,0x17ff,0xfd2c,0xff54,0x171f,0xfd3f,0xff57,0x1684,0xfd50
-pa5ga1=0xff58,0x1841,0xfd25,0xff5b,0x1856,0xfd27,0xff5a,0x17e9,0xfd34,0xff52,0x1742,0xfd3c
-
-#low power range
-pa5ga2=0xffa1,0x0f28,0xfdd2,0xff99,0x0ef7,0xfddb,0xff92,0x0ef9,0xfddf,0xffa0,0x0ec3,0xfddc
-pa5ga3=0xff5e,0x0f50,0xfde2,0xff6a,0x0fe3,0xfdd5,0xff57,0x0f1c,0xfdec,0xff80,0x1020,0xfdd0
-
+pdoffsetcckma0=0x3
+pdoffsetcckma1=0x3
 pdoffset40ma0=0x0000
 pdoffset80ma0=0x0000
 pdoffset40ma1=0x0000
 pdoffset80ma1=0x0000
-
-# Low band power offsets
+cckbw202gpo=0x0000
+cckbw20ul2gpo=0x0000
+mcsbw202gpo=0xCC886664
+dot11agofdmhrbw202gpo=0x6688
+ofdmlrbw202gpo=0x0022
+mcsbw205glpo=0x88866660
+mcsbw405glpo=0xAAA88884
+mcsbw805glpo=0xCCCAAAA6
+mcsbw205gmpo=0x88866660
+mcsbw405gmpo=0xAAA88884
+mcsbw805gmpo=0xCCCAAAA6
+mcsbw205ghpo=0x88866660
+mcsbw405ghpo=0xAAA88884
+mcsbw805ghpo=0xCCCAAAA6
 mcslr5glpo=0x0000
-mcsbw205glpo=0xaaa44440
-mcsbw405glpo=0xccc66662
-mcsbw805glpo=0xdddbbbbb
-sb40and80lr5glpo=0x0
-sb40and80hr5glpo=0x0
-sb20in80and160lr5glpo=0x0
-sb20in80and160hr5glpo=0x0
-
-# Mid band power offsets
 mcslr5gmpo=0x0000
-mcsbw205gmpo=0xaaa44440
-mcsbw405gmpo=0xccc66662
-mcsbw805gmpo=0xdddbbbbb
-sb40and80lr5gmpo=0x0
-sb40and80hr5gmpo=0x0
-sb20in80and160lr5gmpo=0x0
+mcslr5ghpo=0x0000
+sb20in40hrpo=0x0
+sb20in80and160hr5glpo=0x0
+sb40and80hr5glpo=0x0
 sb20in80and160hr5gmpo=0x0
-
-# High band power offsets
-mcsbw205ghpo=0xaaa44440
-mcsbw405ghpo=0xccc66662
-mcsbw805ghpo=0xdddbbbbb
-sb40and80lr5ghpo=0x0
-sb40and80hr5ghpo=0x0
-sb20in80and160lr5ghpo=0x0
+sb40and80hr5gmpo=0x0
 sb20in80and160hr5ghpo=0x0
+sb40and80hr5ghpo=0x0
+sb20in40lrpo=0x0
+sb20in80and160lr5glpo=0x0
+sb40and80lr5glpo=0x0
+sb20in80and160lr5gmpo=0x0
+sb40and80lr5gmpo=0x0
+sb20in80and160lr5ghpo=0x0
 
-## 2G TX power compensation
-#powoffs2gtna0=0,0,0,-3,-3,-1,0,0,-2,-2,-1,0,2,0
-#powoffs2gtna1=0,0,0,-2,-2,0,0,0,-2,-4,-4,-1,0,0
+sb40and80lr5ghpo=0x0
+dot11agduphrpo=0x0
+dot11agduplrpo=0x0
+phycal_tempdelta=25
+temps_period=15
+phy4350_ss_opt=1
+AvVmid_c0=2,140,2,145,2,145,2,145,2,145
+AvVmid_c1=2,140,2,145,2,145,2,145,2,145
 
-cck_onecore_tx=1
+rssicorrnorm_c0=-1,-1
+rssicorrnorm_c1=-1,-1
+rssicorrnorm5g_c0=1,2,2,0,2,2,1,2,2,1,2,3
+rssicorrnorm5g_c1=0,1,2,0,1,2,0,1,2,0,1,2
 
 epsdelta2g0=0
 epsdelta2g1=0
 papdwar=4
+cckdigfilttype=4
+cck_onecore_tx=1
+tssisleep_en=0x1f
+
+swctrlmap_5g=0x02080208,0x05a00000,0x04200000,0x000000,0x0fd
+swctrlmap_2g=0x14011401,0x28500000,0x08100000,0x020202,0x0ff
+#fem_table_init_val=0x1,0x1
+## To improve BTC throughput fluctuation
+swctrlmapext_2g=0x0,0x0,0x0,0x0,0x03
+
 ## Enabling OOB signal - needed for final board
 host_wake_opt=0
-## SAR control
-dynamicsarctrl_2g=0xc0b8
-dynamicsarctrl_5g=0xa4a0
+
+# For Sensor Hub UART
+muxenab=0x4
+shwakepin=0x62
+
+## 2G TX power compensation
+#powoffs2gtna0=0,-1,-1,0,2,3,4,4,2,0,-1,-2,-1,0
+#powoffs2gtna1=0,0,0,0,2,3,4,4,4,2,1,1,1,0
+
+rpcal2g=10
+rpcal5gb0=20
+rpcal5gb1=10
+rpcal5gb2=20
+rpcal5gb3=10
+
+#dynamicsarctrl_2g=0xffb0
+#dynamicsarctrl_5g=0xffa0
 
 btc_params82=0x0
 btc_params51=0x409f
@@ -244,6 +191,4 @@ btcdyn_dsns_rows=1
 btcdyn_msw_row0=1,12,-70,-5,-100
 # --- desense switching data rows (max is 4) ---
 btcdyn_dsns_row0=5,4,0,-65,-65
-
-ag0=0
-
+## btc parameters should be added
