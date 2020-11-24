@@ -21,7 +21,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := libGLES_mali
 LOCAL_MODULE_OWNER := samsung
 LOCAL_SRC_FILES := proprietary/system/vendor/lib/egl/libGLES_mali.so
-LOCAL_MULTILIB := 32
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 LOCAL_MODULE_SUFFIX := .so
@@ -31,7 +30,11 @@ SYMLINKS := $(TARGET_OUT)/vendor
 $(SYMLINKS):
 	@echo "Symlink: vulkan.exynos5.so"
 	@mkdir -p $@/lib/hw
-	$(hide) ln -sf ../egl/libGLES_mali.so $@/lib/hw/vulkan.exynos5.so
+	$(hide) ln -sf egl/libGLES_mali.so $@/lib/hw/vulkan.exynos5.so
+	@echo "Symlink: libOpenCL.so"
+	$(hide) ln -sf egl/libGLES_mali.so $@/lib/libOpenCL.so
+	@echo "Symlink: libOpenCL.so.1"
+	$(hide) ln -sf egl/libGLES_mali.so $@/lib/libOpenCL.so.1
 	@echo "Symlink: libOpenCL.so.1.1"
 	$(hide) ln -sf egl/libGLES_mali.so $@/lib/libOpenCL.so.1.1
 
